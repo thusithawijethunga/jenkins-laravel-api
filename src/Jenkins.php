@@ -77,12 +77,18 @@ class Jenkins
      */
     private $views;
 
-    public function __construct()
+    public function __construct($baseUrl = null)
     {
+        if (is_null($baseUrl)) {
+            $this->getBaseUrl();
+        } else {
+            $this->baseUrl = $baseUrl;
+        }
+
 
         $this->httpClient = new Client(
             [
-                'base_uri' => $this->getBaseUrl(),
+                'base_uri' => $this->baseUrl,
                 'defaults' => [
                     'verify' => 'false'
                 ],
