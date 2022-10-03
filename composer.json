@@ -15,8 +15,7 @@
     },
     "require": {
         "php": "^7.1|^8.0",
-        "illuminate/support": "~5",
-        "guzzlehttp/guzzle": "~6.2"
+        "illuminate/support": "~5"
     },
     "require-dev": {
         "atoum/atoum": "2.0.1"
