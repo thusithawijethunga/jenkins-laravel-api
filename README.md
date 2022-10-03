@@ -104,21 +104,26 @@ Import Api Class
 
 ```
 
-Get the color of the job
+Get the job information
 ----------------------
 
 ```php
 
     $jenkins = new JenkinsApi();
-
+    
     $jenkins->initialize();
 
     $job = $jenkins->getJob("dev2-pull");
 
-    var_dump($job->getColor());
-    //string(4) "blue"
+    $job->getName();
 
     $job->getFullDisplayName();
+
+    $job->getColor();
+
+    $job->getIsDisabled();
+
+    $job->getNextBuildNumber();
 
     $job->getUrl();
 
