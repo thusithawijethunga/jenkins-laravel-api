@@ -15,9 +15,13 @@ curl -sS https://getcomposer.org/installer | php
 
 Then, run the Composer command to install the latest version:
 
+In bash terminal
+
 ```bash
 composer.phar require thusithawijethunga/jenkins-laravel-api
 ```
+
+In windows cmd terminal
 
 ```cmd
 composer require thusithawijethunga/jenkins-laravel-api
