@@ -77,14 +77,10 @@ class Jenkins
      */
     private $views;
 
-    public function __construct($baseUrl = null)
+    public function __construct()
     {
-        if (is_null($baseUrl)) {
-            $this->getBaseUrl();
-        } else {
-            $this->baseUrl = $baseUrl;
-        }
 
+        $this->getBaseUrl();
 
         $this->httpClient = new Client(
             [
@@ -183,11 +179,12 @@ class Jenkins
 
     public function makeAccessUrl(): string
     {
-        $is_https = env('JENKINS_URL_HTTPS', false);
-        $domain = env('JENKINS_DOMAIN', '127.0.0.0');
-        $port = env('JENKINS_PORT', '8080');
-        $user = env('JENKINS_USER', 'user');
-        $token = env('JENKINS_TOKEN', 'token_data');
+
+        $is_https   = config('jenkins.api.is_https');
+        $domain     = config('jenkins.api.domain');
+        $port       = config('jenkins.api.port');
+        $user       = config('jenkins.api.user');
+        $token      = config('jenkins.api.token');
 
         $url = $is_https ? "https://{$user}:{$token}@{$domain}:{$port}" : "http://{$user}:{$token}@{$domain}:{$port}";
 
@@ -623,7 +620,7 @@ class Jenkins
 
     /**
      * TODO
-     * 
+     *
      * @param string $jobname
      * @param string $xmlConfiguration
      *
@@ -641,8 +638,9 @@ class Jenkins
             $headers[] = $this->getCrumbHeader();
         }
 
-        $user = env('JENKINS_USER', 'user');
-        $token = env('JENKINS_TOKEN', 'token_data');
+        $user       = config('jenkins.api.user');
+        $token      = config('jenkins.api.token');
+
         $encoding =  base64_encode($user . ":" .  $token);
         $headers[] = 'Authorization : Basic ' . $encoding;
 
