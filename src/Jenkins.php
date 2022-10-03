@@ -118,6 +118,9 @@ class Jenkins
         return $this->jenkinsVersion;
     }
 
+    /**
+     * @return boolean
+     */
     public function isAvailable(): bool
     {
         return $this->isAvailable;
@@ -619,6 +622,8 @@ class Jenkins
 
 
     /**
+     * TODO
+     * 
      * @param string $jobname
      * @param string $xmlConfiguration
      *
