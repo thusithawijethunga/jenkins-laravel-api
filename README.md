@@ -28,6 +28,12 @@ Basic Usage
 php artisan vendor:publish --tag=config
 
 ```
+ or 
+
+```php 
+php artisan vendor:publish --provider="JenkinsLaravel\JenkinServiceProvider" --tag="config"
+
+```
 
 
 Before anything, you need to instantiate the client :
@@ -45,10 +51,16 @@ JENKINS_TOKEN       =   token
 
 ```
 
-or pass api url
+or update config file
 
 ```php
-    $jenkins = new \JenkinsLaravel\Jenkins('http://host.org:8080');
+
+\config\jenkinapi.php
+
+```
+
+```php
+    $jenkins = new \JenkinsLaravel\Jenkins();
     
 ```
 
