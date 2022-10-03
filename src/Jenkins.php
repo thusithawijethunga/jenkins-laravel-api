@@ -180,11 +180,11 @@ class Jenkins
     public function makeAccessUrl(): string
     {
 
-        $is_https   = config('jenkins.api.is_https');
-        $domain     = config('jenkins.api.domain');
-        $port       = config('jenkins.api.port');
-        $user       = config('jenkins.api.user');
-        $token      = config('jenkins.api.token');
+        $is_https   = config('jenkins.api.is_https',false);
+        $domain     = config('jenkins.api.domain','host.org');
+        $port       = config('jenkins.api.port',8080);
+        $user       = config('jenkins.api.user','admin');
+        $token      = config('jenkins.api.token','token_data');
 
         $url = $is_https ? "https://{$user}:{$token}@{$domain}:{$port}" : "http://{$user}:{$token}@{$domain}:{$port}";
 
@@ -638,8 +638,8 @@ class Jenkins
             $headers[] = $this->getCrumbHeader();
         }
 
-        $user       = config('jenkins.api.user');
-        $token      = config('jenkins.api.token');
+        $user       = config('jenkins.api.user','admin');
+        $token      = config('jenkins.api.token','token_data');
 
         $encoding =  base64_encode($user . ":" .  $token);
         $headers[] = 'Authorization : Basic ' . $encoding;

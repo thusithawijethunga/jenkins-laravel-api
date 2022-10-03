@@ -38,7 +38,7 @@ Update your Laravel Env File
 
 # Url Is Https
 JENKINS_URL_HTTPS   =   false
-JENKINS_DOMAIN      =   localhost
+JENKINS_DOMAIN      =   host.org
 JENKINS_PORT        =   8080
 JENKINS_USER        =   admin
 JENKINS_TOKEN       =   token
