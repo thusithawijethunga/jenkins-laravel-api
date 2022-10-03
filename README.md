@@ -79,6 +79,8 @@ Get the color of the job
 
     $jenkins = new JenkinsApi();
 
+    $jenkins->initialize();
+
     $job = $jenkins->getJob("dev2-pull");
 
     var_dump($job->getColor());
@@ -203,6 +205,8 @@ Launch a Job
 
     $jenkins = new JenkinsApi();
 
+    $jenkins->initialize();
+
     $job = $jenkins->launchJob("clone-deploy");
     var_dump($job);
     // bool(true) if successful or throws a RuntimeException
@@ -215,6 +219,8 @@ List the jobs of a given view
 ```php
 
     $jenkins = new JenkinsApi();
+
+    $jenkins->initialize();
 
     $view = $jenkins->getView('madb_deploy');
     foreach ($view->getJobs() as $job) {
@@ -251,6 +257,8 @@ List builds and their status
 
     $jenkins = new JenkinsApi();
 
+    $jenkins->initialize();
+
     $job = $jenkins->getJob('dev2-pull');
     foreach ($job->getBuilds() as $build) {
       var_dump($build->getNumber());
@@ -277,6 +285,30 @@ Get Jenkins Version
 ```php
     var_dump($jenkins->getJenkinsVersion());
     //string(7) "2.361.1";
+```
+
+Using Facade
+------------------
+
+```php
+
+use JenkinsLaravel\Facade\Jenkin as JenkinsFacade;
+
+```
+
+```php
+
+# Call initialize function before calling each of other functions
+JenkinsFacade::initialize();
+
+$isAvailable = JenkinsFacade::isAvailable();
+
+$jenkinsVersion = JenkinsFacade::getJenkinsVersion();
+
+$allJobs = JenkinsFacade::getJobs();
+
+$allViews = JenkinsFacade::getViews();
+
 ```
 
 For more information, see the [Jenkins API](https://wiki.jenkins-ci.org/display/JENKINS/Remote+access+API).

@@ -94,8 +94,6 @@ class Jenkins
                     ]
                 ]
             );
-
-            $this->initialize();
         }
     }
 
