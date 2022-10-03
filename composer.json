@@ -1,32 +1,48 @@
 {
-  "name": "thusithawijethunga/jenkins-laravel-api",
-  "type": "library",
-  "description": "Jenkins Laravel API",
-  "keywords": [
-    "jenkins",
-    "api"
-  ],
-  "homepage": "https://github.com/thusithawijethunga/jenkins-laravel-api",
-  "license": "MIT",
-  "autoload": {
-    "psr-4": {
-      "JenkinsLaravel\\": "src/"
-    }
-  },
-  "require-dev": {
-    "atoum/atoum": "2.0.1"
-  },
-  "config": {
-    "bin-dir": "bin"
-  },
-  "authors": [
-    {
-      "name": "jenkins-khan",
-      "homepage": "https://github.com/jenkins-khan/jenkins-php-api"
+    "name": "thusithawijethunga/jenkins-laravel-api",
+    "type": "package",
+    "description": "Jenkins Laravel API",
+    "keywords": [
+        "jenkins",
+        "api"
+    ],
+    "homepage": "https://github.com/thusithawijethunga/jenkins-laravel-api",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "JenkinsLaravel\\": "src/"
+        }
     },
-    {
-      "name": "thusithawijethunga",
-      "homepage": "https://github.com/thusithawijethunga"
-    }
-  ]
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "~5",
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "atoum/atoum": "2.0.1"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JenkinsLaravel\\JenkinServiceProvider"
+            ],
+            "aliases": {
+                "Jenkin": "JenkinsLaravel\\Facade\\Jenkin"
+            }
+        }
+    },
+    "authors": [
+        {
+            "name": "jenkins-khan",
+            "homepage": "https://github.com/jenkins-khan/jenkins-php-api"
+        },
+        {
+            "name": "thusithawijethunga",
+            "homepage": "https://github.com/thusithawijethunga"
+        }
+    ]
 }

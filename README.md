@@ -23,6 +23,13 @@ composer.phar require thusithawijethunga/jenkins-laravel-api
 Basic Usage
 ----------------
 
+```php 
+
+php artisan vendor:publish --tag=config
+
+```
+
+
 Before anything, you need to instantiate the client :
 
 Update your Laravel Env File
@@ -77,27 +84,7 @@ Get the color of the job
     var_dump($job->getColor());
     //string(4) "blue"
 
-```
-
-
-Get the job information
-----------------------
-
-```php
-
-    $jenkins = new JenkinsApi();
-
-    $job = $jenkins->getJob("dev2-pull");
-
-    $job->getName();
-
     $job->getFullDisplayName();
-
-    $job->getColor();
-
-    $job->getIsDisabled();
-
-    $job->getNextBuildNumber();
 
     $job->getUrl();
 
