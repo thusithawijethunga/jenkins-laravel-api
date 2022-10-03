@@ -345,9 +345,13 @@ For more information, see the [Jenkins API](https://wiki.jenkins-ci.org/display/
 Coding standards
 ----------------
 
-This projects follows PSR-0, PSR-1, PSR-2, PSR-4
+This projects follows 
+[PSR-0](https://www.php-fig.org/psr/psr-0/),
+[PSR-1](https://www.php-fig.org/psr/psr-1/),
+[PSR-2](https://www.php-fig.org/psr/psr-2/),
+[PSR-4](https://www.php-fig.org/psr/psr-4/)
 
-ToDo
+TODO
 ----------------
 
 * createJob function need confirm
