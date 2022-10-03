@@ -15,9 +15,9 @@ class JenkinServiceProvider extends ServiceProvider
     {
         // loading the routes
         // require __DIR__ . "/Http/routes.php";
-        $configPath = __DIR__ . '/config/jenkin.php';
-        $this->publishes([$configPath => config_path('jenkin.php')], 'jenkin_config');
-        $this->mergeConfigFrom($configPath, 'jenkin');
+        $configPath = __DIR__ . '/config/jenkinapi.php';
+        $this->publishes([$configPath => config_path('jenkinapi.php')], 'jenkinapi_config');
+        $this->mergeConfigFrom($configPath, 'jenkinapi');
     }
 
     /**
@@ -34,7 +34,7 @@ class JenkinServiceProvider extends ServiceProvider
 
     private function bindFacade()
     {
-        $this->app->bind('jenkin', function ($app) {
+        $this->app->bind('jenkins', function ($app) {
             return new Jenkins();
         });
     }

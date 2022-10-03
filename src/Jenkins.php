@@ -79,22 +79,24 @@ class Jenkins
 
     public function __construct()
     {
+        if (!app()->runningInConsole()) {
 
-        $this->getBaseUrl();
+            $this->getBaseUrl();
 
-        $this->httpClient = new Client(
-            [
-                'base_uri' => $this->baseUrl,
-                'defaults' => [
-                    'verify' => 'false'
-                ],
-                'headers' => [
-                    'Accept' => 'application/json',
+            $this->httpClient = new Client(
+                [
+                    'base_uri' => $this->baseUrl,
+                    'defaults' => [
+                        'verify' => 'false'
+                    ],
+                    'headers' => [
+                        'Accept' => 'application/json',
+                    ]
                 ]
-            ]
-        );
+            );
 
-        $this->initialize();
+            $this->initialize();
+        }
     }
 
     public function getBaseUrl(): string
@@ -180,11 +182,11 @@ class Jenkins
     public function makeAccessUrl(): string
     {
 
-        $is_https   = config('jenkins.api.is_https',false);
-        $domain     = config('jenkins.api.domain','host.org');
-        $port       = config('jenkins.api.port',8080);
-        $user       = config('jenkins.api.user','admin');
-        $token      = config('jenkins.api.token','token_data');
+        $is_https   = config('jenkinapi.api.is_https', false);
+        $domain     = config('jenkinapi.api.domain', 'host.org');
+        $port       = config('jenkinapi.api.port', 8080);
+        $user       = config('jenkinapi.api.user', 'admin');
+        $token      = config('jenkinapi.api.token', 'token_data');
 
         $url = $is_https ? "https://{$user}:{$token}@{$domain}:{$port}" : "http://{$user}:{$token}@{$domain}:{$port}";
 
@@ -638,8 +640,8 @@ class Jenkins
             $headers[] = $this->getCrumbHeader();
         }
 
-        $user       = config('jenkins.api.user','admin');
-        $token      = config('jenkins.api.token','token_data');
+        $user       = config('jenkinapi.api.user', 'admin');
+        $token      = config('jenkinapi.api.token', 'token_data');
 
         $encoding =  base64_encode($user . ":" .  $token);
         $headers[] = 'Authorization : Basic ' . $encoding;

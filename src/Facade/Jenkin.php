@@ -9,6 +9,6 @@ class Jenkin extends Facade
 
     public static function getFacadeAccessor()
     {
-        return "jenkin";
+        return "jenkins";
     }
 }
