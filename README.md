@@ -19,6 +19,18 @@ Then, run the Composer command to install the latest version:
 composer.phar require thusithawijethunga/jenkins-laravel-api
 ```
 
+```cmd
+composer require thusithawijethunga/jenkins-laravel-api
+```
+
+or Update your composer json
+
+```json
+      "require": {
+        ...,
+        "thusithawijethunga/jenkins-laravel-api": "^1.0"
+      }
+```
 
 Basic Usage
 ----------------
@@ -70,7 +82,11 @@ If your Jenkins needs authentication, you need to pass a URL like this : `'http:
 Generate Api Token
 ----------------------
 
+```php
+
 https://{jenkins}/user/{user-name}/configure
+
+```
 
 Here are some examples of how to use it:
 
