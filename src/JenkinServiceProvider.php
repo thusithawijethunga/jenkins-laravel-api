@@ -15,7 +15,7 @@ class JenkinServiceProvider extends ServiceProvider
     {
         // loading the routes
         // require __DIR__ . "/Http/routes.php";
-        $configPath = __DIR__ . '/config/jenkinapi.php';
+        $configPath = __DIR__ . '/Config/jenkinapi.php';
         $this->publishes([$configPath => config_path('jenkinapi.php')], 'jenkinapi_config');
         $this->mergeConfigFrom($configPath, 'jenkinapi');
     }
