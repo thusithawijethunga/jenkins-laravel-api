@@ -1,8 +1,8 @@
 <?php
 
-namespace JenkinsKhan\Jenkins;
+namespace JenkinsLaravel\Jenkins;
 
-use JenkinsKhan\Jenkins;
+use JenkinsLaravel\Jenkins;
 
 class Executor
 {

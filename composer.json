@@ -1,13 +1,16 @@
 {
-  "name": "jenkins-khan/jenkins-api",
+  "name": "thusithawijethunga/jenkins-laravel-api",
   "type": "library",
-  "description": "Jenkins PHP API",
-  "keywords": ["jenkins", "api"],
-  "homepage": "https://github.com/jenkins-khan/jenkins-php-api",
+  "description": "Jenkins Laravel API",
+  "keywords": [
+    "jenkins",
+    "api"
+  ],
+  "homepage": "https://github.com/thusithawijethunga/jenkins-laravel-api",
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "JenkinsKhan\\": "src/"
+      "JenkinsLaravel\\": "src/"
     }
   },
   "require-dev": {
@@ -20,6 +23,10 @@
     {
       "name": "jenkins-khan",
       "homepage": "https://github.com/jenkins-khan/jenkins-php-api"
+    },
+    {
+      "name": "thusithawijethunga",
+      "homepage": "https://github.com/thusithawijethunga"
     }
   ]
 }

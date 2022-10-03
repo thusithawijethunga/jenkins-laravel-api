@@ -1,8 +1,8 @@
 <?php
 
-namespace JenkinsKhan\Jenkins;
+namespace JenkinsLaravel\Jenkins;
 
-use JenkinsKhan\Jenkins;
+use JenkinsLaravel\Jenkins;
 
 class JobQueue
 {
@@ -11,7 +11,6 @@ class JobQueue
      * @var \stdClass
      */
     private $jobQueue;
-
 
     /**
      * @var Jenkins
@@ -52,6 +51,37 @@ class JobQueue
     public function getJobName()
     {
         return $this->jobQueue->task->name;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->jobQueue->url;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getWhy()
+    {
+        return $this->jobQueue->why;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getInQueueSince()
+    {
+        if (is_null($this->jobQueue->inQueueSince)) {
+            return null;
+        }
+
+        return (date("H:i:s - m.d.y", $this->jobQueue->inQueueSince));
     }
 
     /**

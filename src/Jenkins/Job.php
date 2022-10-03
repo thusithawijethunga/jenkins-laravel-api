@@ -1,8 +1,8 @@
 <?php
 
-namespace JenkinsKhan\Jenkins;
+namespace JenkinsLaravel\Jenkins;
 
-use JenkinsKhan\Jenkins;
+use JenkinsLaravel\Jenkins;
 
 class Job
 {
@@ -41,7 +41,6 @@ class Job
         return $builds;
     }
 
-
     /**
      * @param int $buildId
      *
@@ -62,6 +61,137 @@ class Job
     }
 
     /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->job->url;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getBuildable()
+    {
+        return $this->job->buildable;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsDisabled()
+    {
+        return $this->job->disabled;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNextBuildNumber()
+    {
+        return $this->job->nextBuildNumber;
+    }
+
+    /**
+     * @return array
+     */
+    public function getHealthReport()
+    {
+        return $this->job->healthReport;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullDisplayName()
+    {
+        return $this->job->fullDisplayName;
+    }
+
+    /**
+     * @return array
+     */
+    public function getQueueItem()
+    {
+        $item = $this->job->queueItem;
+
+        if (!is_null($item)) {
+            return new JobQueue($item, $this->getJenkins());
+        }
+
+        return $item;
+    }
+
+    public function setQueueItem($item)
+    {
+        $this->job->queueItem = $item;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLastCompletedBuild()
+    {
+        if (null === $this->job->lastCompletedBuild) {
+            return null;
+        }
+
+        return $this->getJenkins()->getBuild($this->getName(), $this->job->lastCompletedBuild->number);
+    }
+
+    /**
+     * @return array
+     */
+    public function getLastFailedBuild()
+    {
+        if (null === $this->job->lastFailedBuild) {
+            return null;
+        }
+
+        return $this->getJenkins()->getBuild($this->getName(), $this->job->lastFailedBuild->number);
+    }
+
+    /**
+     * @return array
+     */
+    public function getLastStableBuild()
+    {
+        if (null === $this->job->lastStableBuild) {
+            return null;
+        }
+
+        return $this->getJenkins()->getBuild($this->getName(), $this->job->lastStableBuild->number);
+    }
+
+    /**
+     * @return array
+     */
+    public function getLastUnstableBuild()
+    {
+
+        if (null === $this->job->lastUnstableBuild) {
+            return null;
+        }
+
+        return $this->getJenkins()->getBuild($this->getName(), $this->job->lastUnstableBuild->number);
+    }
+
+    /**
+     * @return array
+     */
+    public function getLastUnsuccessfulBuild()
+    {
+
+        if (null === $this->job->lastUnsuccessfulBuild) {
+            return null;
+        }
+
+        return $this->getJenkins()->getBuild($this->getName(), $this->job->lastUnsuccessfulBuild->number);
+    }
+
+    /**
      * @return array
      */
     public function getParametersDefinition()
@@ -74,20 +204,13 @@ class Job
             }
 
             foreach ($action->parameterDefinitions as $parameterDefinition) {
-                $default     = property_exists($parameterDefinition, 'defaultParameterValue')
-                               && isset($parameterDefinition->defaultParameterValue->value)
-                    ? $parameterDefinition->defaultParameterValue->value
-                    : null;
-                $description = property_exists($parameterDefinition, 'description')
-                    ? $parameterDefinition->description
-                    : null;
-                $choices     = property_exists($parameterDefinition, 'choices')
-                    ? $parameterDefinition->choices
-                    : null;
+                $default = property_exists($parameterDefinition, 'defaultParameterValue') && isset($parameterDefinition->defaultParameterValue->value) ? $parameterDefinition->defaultParameterValue->value : null;
+                $description = property_exists($parameterDefinition, 'description') ? $parameterDefinition->description : null;
+                $choices = property_exists($parameterDefinition, 'choices') ? $parameterDefinition->choices : null;
 
                 $parameters[$parameterDefinition->name] = array(
-                    'default'     => $default,
-                    'choices'     => $choices,
+                    'default' => $default,
+                    'choices' => $choices,
                     'description' => $description,
                 );
             }

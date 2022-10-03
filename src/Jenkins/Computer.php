@@ -1,8 +1,8 @@
 <?php
 
-namespace JenkinsKhan\Jenkins;
+namespace JenkinsLaravel\Jenkins;
 
-use JenkinsKhan\Jenkins;
+use JenkinsLaravel\Jenkins;
 
 class Computer
 {
@@ -75,7 +75,7 @@ class Computer
     public function delete()
     {
         $this->getJenkins()
-             ->deleteComputer($this->getName());
+            ->deleteComputer($this->getName());
 
         return $this;
     }
